@@ -18,25 +18,21 @@ public class ParticleDestruction : Interactable
 
     private void Start()
     {
-        ParticleSystemPrefab = Instantiate(ParticleSystemPrefab, transform.position, Quaternion.Euler(-90f,0,0));
+        ParticleSystemPrefab = Instantiate(ParticleSystemPrefab, transform, false);
 
         ParticleSystem = ParticleSystemPrefab.GetComponent<ParticleSystem>();
         ParticleSystemRenderer = ParticleSystemPrefab.GetComponent<ParticleSystemRenderer>();
         ObjectMeshRenderer = gameObject.GetComponent<MeshRenderer>();
         ObjectMeshFilter = gameObject.GetComponent<MeshFilter>();
 
-        ParticleSystem.startColor = ObjectMeshRenderer.material.color;
         ParticleSystemRenderer.mesh = ObjectMeshFilter.mesh;
         ParticleSystemRenderer.material = ObjectMeshRenderer.material;
     }
 
     override public void Interaction()
     {
+        ParticleSystemPrefab.transform.SetParent(null);
         ParticleSystem.Play();
-        Destroy(gameObject);
-        
+        Destroy(gameObject); 
     }
-
-
-    
 }
