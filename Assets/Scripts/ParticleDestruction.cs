@@ -18,7 +18,7 @@ public class ParticleDestruction : Interactable
 
     private void Start()
     {
-        ParticleSystemPrefab = Instantiate(ParticleSystemPrefab, transform.position, Quaternion.identity);
+        ParticleSystemPrefab = Instantiate(ParticleSystemPrefab, transform.position, Quaternion.Euler(-90f,0,0));
 
         ParticleSystem = ParticleSystemPrefab.GetComponent<ParticleSystem>();
         ParticleSystemRenderer = ParticleSystemPrefab.GetComponent<ParticleSystemRenderer>();
